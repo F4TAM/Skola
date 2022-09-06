@@ -16,7 +16,7 @@ void SchoolSystem::Run()
 
 void SchoolSystem::Meny()
 {
-	std::cout << "Welcome to schoolsystem " << "\n";
+	std::cout << "Welcome to schoolsystem! " << "\n";
 }
 
 void SchoolSystem::AddStudent()
