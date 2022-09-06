@@ -11,6 +11,8 @@ public:
 	void AddStudent();
 	void RemoveStudent();
 
+	void AddStudentMenu();
+
 
 	std::vector<Student> students;
 	std::vector<std::string> schoolClasses;
