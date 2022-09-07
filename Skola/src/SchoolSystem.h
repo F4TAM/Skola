@@ -10,8 +10,8 @@ public:
 	void Meny();
 	void AddStudent();
 	void RemoveStudent();
-
 	void AddStudentMenu();
+	void Clear();
 
 
 	std::vector<Student> students;
