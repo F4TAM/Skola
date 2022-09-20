@@ -10,11 +10,11 @@ public:
 	void Meny();
 	void AddStudent();
 	void RemoveStudent();
-	void AddStudentMenu();
+	void AddClass();
 	void Clear();
 
 
 	std::vector<Student> students;
-	std::vector<std::string> schoolClasses;
+	std::vector<Class> schoolClasses;
 
 };
