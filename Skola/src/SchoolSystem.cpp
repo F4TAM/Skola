@@ -1,38 +1,35 @@
 #include "SchoolSystem.h"
 
 
-char num = '0';
+int num = 0;
+
 void SchoolSystem::Run()
 {
-	SchoolSystem system;
 	bool running = true;
 
 	while (running)
 	{
-
-		system.Meny();
+		Meny();
 		std::cin >> num;
 
 		switch (num)
 		{
-		case '1':
+		case 1:
 
-			system.AddStudent();
-			break;
-		case '2':
-			system.AddClass();
+			AddStudent();
 			break;
 
-		case '3':
-			system.RemoveStudent();
+		case 2:
+
+			AddClass();
+			break;
+
+		case 3:
+			RemoveStudent();
 			break;
 			
-
-		case '6':
-			SchoolSystem::Clear();
-			system.Meny();
-			break;
 		}
+	
 
 		//Meny
 		//input
@@ -56,13 +53,12 @@ void SchoolSystem::AddStudent()
 	bool nameConfirmed = false;
 	bool passConfirmed = false;
 	bool addressConfirmed = false; 
-	bool classConfirmed = false;
 	std::string input = "";
 
 
 	while (!nameConfirmed)
 	{
-		SchoolSystem::Clear();
+		Clear();
 		std::cout << "You're now adding a new student." << "\n\n";
 		std::cout << "Start with the students name, write it down." << "\n";
 		std::cout << "name: ";
@@ -81,7 +77,7 @@ void SchoolSystem::AddStudent()
 	
 	}
 
-	SchoolSystem::Clear();
+	Clear();
 	std::cout << "The student name is saved " << "\n";
 	while (!passConfirmed)
 	{
@@ -101,7 +97,7 @@ void SchoolSystem::AddStudent()
 		}
 	}
 
-	SchoolSystem::Clear();
+	Clear();
 	std::cout << "Student age has now been saved!" << "\n";
 	while (!addressConfirmed)
 	{
@@ -121,48 +117,99 @@ void SchoolSystem::AddStudent()
 		}
 	}
 
-	SchoolSystem::Clear();
+	Clear();
 	std::cout << "The student address is now saved " << "\n";
-
-	while (!classConfirmed)
-	{
-		std::cout << "Now write down the class you wish the student to be in " << "\n";
-		std::cout << "Class: ";
-		std::cin.ignore();
-		std::getline(std::cin, input);
-		student.SchoolClass = input;
-		std::cout << "The class you wrote is: " << input << "\n";
-		std::cout << "Press 1 to Confirm " << "\n";
-		std::cout << "Press 2 to Decline " << "\n";
-
-		std::cin >> input;
-		if (input == "1")
-		{
-			classConfirmed = true;
-		}
-	}
+	
+	std::cout << "\n";
 
 	std::cout << "Now everything is done! " << "\n";
 	students.push_back(student);
 
-	SchoolSystem::Clear();
-	std::cout << "Press 6 to return to menu!" << "\n";
-	std::cin >> num;
+	std::cout << "Press any button to go to menu" << "\n";
+	std::cin.ignore();
+	std::cin.get();
 }
 
 void SchoolSystem::RemoveStudent()
 {
+	std::string name;
+	std::string input = "";
+
+	std::cout << "Write the name of the student you wish to remove!" << "\n";
+	std::cout << "Name: " << "\n";
+
+	for (int i = 0; i < students.size(); i++)
+	{
+		if (students[i].name == name)
+		{
+			std::cout << "Press any button to remove student!" << "\n";
+			std::cin.get();
+
+			students.erase(students.begin() + i);
+		}
+
+		else if(students[i].name != name)
+		{
+			std::cout << "The name did not exist in the system! " << "\n";
+
+		}
+	}
 
 }
 
 void SchoolSystem::AddClass()
 {
-	Class addClass;
-	std::cout << "Hello! Here you create a new class for your schoolsystem!" << "\n";
+	std::string classname = "";
 
+
+	std::cout << "Hello! Here you create a new class for your schoolsystem!" << "\n";
+	std::cout << "Please enter the name of the class you wish to create! " << "\n\n";
+	std::cout << "Classname: ";
+
+	std::cin.ignore();
+	std::getline(std::cin, classname);
+
+	schoolClasses.push_back(classname);
+
+	std::cout << "Now you've added the class: ";
+
+	for (size_t  i = 0; i <schoolClasses.size(); i++)
+	{
+		std::cout << schoolClasses.at(i) << "\n";
+	}
+
+	std::cout << "\n";
+	std::cout << "press any button to go back to menu!" << "\n";
+
+	std::cin.get();
+	Clear();
 }
 
 void SchoolSystem::Clear()
 {
 	std::cout << "\x1B[2J\x1B[H";
+}
+
+void SchoolSystem::AddStudentToClass()
+{
+	std::string name;
+	std::string schoolclass;
+
+	//feedback namn
+	std::cin >> name;
+
+	//feedback class
+	std::cin >> schoolclass;
+
+	for (auto& classes : schoolClasses)
+	{
+		if (classes != schoolclass) return;
+	}
+
+	for (auto& student : students)
+	{
+		if (student.name == name) student.SchoolClass = schoolclass;
+	}
+
+	//output
 }

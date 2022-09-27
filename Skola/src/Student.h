@@ -11,8 +11,3 @@ struct Student
 	std::string Address = ""; 
 	std::string SchoolClass = "";
 };
-
-struct Class
-{
-	std::string ClassName = "";
-};
