@@ -13,9 +13,10 @@ public:
 	void AddClass();
 	void Clear();
 	void AddStudentToClass();
-
+	void StudentInfo();
+	void PrintS(std::string word);
+	void PrintW(std::string word);
 
 	std::vector<Student> students;
 	std::vector<std::string> schoolClasses;
-
 };

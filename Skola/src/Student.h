@@ -7,7 +7,7 @@
 struct Student
 {
 	std::string name = "";
-	int age = 0;
+	std::string age = "";
 	std::string Address = ""; 
-	std::string SchoolClass = "";
+	std::string schoolClass = "";
 };
