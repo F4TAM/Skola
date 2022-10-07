@@ -232,6 +232,29 @@ void SchoolSystem::AddStudentToClass()
 	std::string name;
 	std::string schoolclass;
 	std::string input = "";
+
+	if (schoolClasses.size() == 0)
+	{
+		PrintS("There is not any classes registered to the system!");
+		PrintS("To create a new class press 2 in the menu");
+		PrintS("");
+		PrintS("Press any button to return to menu!");
+		std::cin.ignore();
+		std::cin.get();
+		Clear();
+		return;
+	}
+	if (students.size() == 0)
+	{
+		PrintS("There is not any students registered to the system!");
+		PrintS("To create a new student press 1 in the menu!");
+		PrintS("");
+		PrintS("Press any button to return to menu!");
+		std::cin.ignore();
+		std::cin.get();
+		Clear();
+		return;
+	}
 	
 	//a goto to rewrite the name if the person wrote it wrong
 	Rewrite:
@@ -239,6 +262,7 @@ void SchoolSystem::AddStudentToClass()
 	PrintW("Class: ");
 	std::cin >> schoolclass;
 
+		
 	//Looking through the vector to check if the given class name did not exist
 	for (auto& classes : schoolClasses)
 	{
@@ -314,6 +338,7 @@ void SchoolSystem::AddStudentToClass()
 
 	std::cin.ignore();
 	std::cin.get();
+	Clear();
 }
 void SchoolSystem::StudentInfo()
 {
